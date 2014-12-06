@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+ <debug showDebugMenu="0" />
+ <systemtable>
+  <columns>
+   <connections preferredWidth="127" />
+   <irq preferredWidth="34" />
+  </columns>
+ </systemtable>
+ <clocktable>
+  <columns>
+   <clockname preferredWidth="134" />
+   <clocksource preferredWidth="134" />
+   <frequency preferredWidth="114" />
+  </columns>
+ </clocktable>
+ <window width="960" height="1037" x="0" y="43" />
+ <library
+   expandedCategories="Library/Peripherals/Microcontroller Peripherals,Project,Library/Peripherals,Library" />
+ <generation path="niosii_system" />
+</preferences>
