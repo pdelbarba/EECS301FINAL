@@ -2,7 +2,7 @@ set_global_assignment -entity "my_nios2_system" -library "my_nios2_system" -name
 set_global_assignment -entity "my_nios2_system" -library "my_nios2_system" -name IP_TOOL_VERSION "13.1"
 set_global_assignment -entity "my_nios2_system" -library "my_nios2_system" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -library "my_nios2_system" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../my_nios2_system.sopcinfo"]
-set_global_assignment -entity "my_nios2_system" -library "my_nios2_system" -name SLD_INFO "QSYS_NAME my_nios2_system HAS_SOPCINFO 1 GENERATION_ID 1417892138"
+set_global_assignment -entity "my_nios2_system" -library "my_nios2_system" -name SLD_INFO "QSYS_NAME my_nios2_system HAS_SOPCINFO 1 GENERATION_ID 1417920494"
 set_global_assignment -library "my_nios2_system" -name MISC_FILE [file join $::quartus(qip_path) "../../my_nios2_system.cmp"]
 set_global_assignment -library "my_nios2_system" -name SLD_FILE [file join $::quartus(qip_path) "my_nios2_system.regmap"]
 set_global_assignment -library "my_nios2_system" -name SLD_FILE [file join $::quartus(qip_path) "my_nios2_system.debuginfo"]

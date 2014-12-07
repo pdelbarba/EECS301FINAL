@@ -14,8 +14,8 @@
    <frequency preferredWidth="114" />
   </columns>
  </clocktable>
- <window width="960" height="1037" x="0" y="43" />
+ <window width="960" height="1037" x="960" y="43" />
  <library
-   expandedCategories="Library/Peripherals/Microcontroller Peripherals,Project,Library/Peripherals,Library" />
+   expandedCategories="Library/Bridges and Adapters/DMA,Library/Qsys Interconnect/Memory-Mapped,Project,Library/Bridges and Adapters,Library/Qsys Interconnect,Library" />
  <generation path="niosii_system" />
 </preferences>

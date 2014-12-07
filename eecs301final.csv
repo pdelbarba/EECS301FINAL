@@ -1,0 +1,73 @@
+# Copyright (C) 1991-2013 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+
+# Quartus II 32-bit Version 13.1.0 Build 162 10/23/2013 SJ Full Version
+# File: /home/patrick/Dropbox/Classes/Digital_Logic-EECS301/EECS301FINAL/eecs301final.csv
+# Generated on: Sat Dec  6 19:37:45 2014
+
+# Note: The column header names should not be changed if you wish to import this .csv file into the Quartus II software.
+
+To,Direction,Location,I/O Bank,VREF Group,I/O Standard,Reserved,Current Strength,Slew Rate,Differential Pair
+DRAM_ADDR[0],Output,PIN_C4,8,B8_N1,,,,,
+DRAM_ADDR[1],Output,PIN_A3,8,B8_N1,,,,,
+DRAM_ADDR[2],Output,PIN_B3,8,B8_N1,,,,,
+DRAM_ADDR[3],Output,PIN_C3,8,B8_N1,,,,,
+DRAM_ADDR[4],Output,PIN_A5,8,B8_N0,,,,,
+DRAM_ADDR[5],Output,PIN_C6,8,B8_N1,,,,,
+DRAM_ADDR[6],Output,PIN_B6,8,B8_N0,,,,,
+DRAM_ADDR[7],Output,PIN_A6,8,B8_N0,,,,,
+DRAM_ADDR[8],Output,PIN_C7,8,B8_N0,,,,,
+DRAM_ADDR[9],Output,PIN_B7,8,B8_N0,,,,,
+DRAM_ADDR[10],Output,PIN_B4,8,B8_N1,,,,,
+DRAM_ADDR[11],Output,PIN_A7,8,B8_N0,,,,,
+DRAM_ADDR[12],Output,PIN_C8,8,B8_N0,,,,,
+DRAM_BA[0],Output,PIN_B5,8,B8_N1,,,,,
+DRAM_BA[1],Output,PIN_A4,8,B8_N1,,,,,
+DRAM_CAS_N,Output,PIN_G8,8,B8_N1,,,,,
+DRAM_CKE,Output,PIN_E6,8,B8_N1,,,,,
+DRAM_CS_N,Output,PIN_G7,8,B8_N1,,,,,
+DRAM_DQ[0],Bidir,PIN_D10,8,B8_N0,,,,,
+DRAM_DQ[1],Bidir,PIN_G10,8,B8_N0,,,,,
+DRAM_DQ[2],Bidir,PIN_H10,8,B8_N0,,,,,
+DRAM_DQ[3],Bidir,PIN_E9,8,B8_N0,,,,,
+DRAM_DQ[4],Bidir,PIN_F9,8,B8_N1,,,,,
+DRAM_DQ[5],Bidir,PIN_G9,8,B8_N0,,,,,
+DRAM_DQ[6],Bidir,PIN_H9,8,B8_N0,,,,,
+DRAM_DQ[7],Bidir,PIN_F8,8,B8_N1,,,,,
+DRAM_DQ[8],Bidir,PIN_A8,8,B8_N0,,,,,
+DRAM_DQ[9],Bidir,PIN_B9,8,B8_N0,,,,,
+DRAM_DQ[10],Bidir,PIN_A9,8,B8_N0,,,,,
+DRAM_DQ[11],Bidir,PIN_C10,8,B8_N0,,,,,
+DRAM_DQ[12],Bidir,PIN_B10,8,B8_N0,,,,,
+DRAM_DQ[13],Bidir,PIN_A10,8,B8_N0,,,,,
+DRAM_DQ[14],Bidir,PIN_E10,8,B8_N0,,,,,
+DRAM_DQ[15],Bidir,PIN_F10,8,B8_N1,,,,,
+DRAM_LDQM,Output,PIN_E7,8,B8_N1,,,,,
+DRAM_RAS_N,Output,PIN_F7,8,B8_N1,,,,,
+DRAM_UDQM,Output,PIN_B8,8,B8_N0,,,,,
+DRAM_WE_N,Output,PIN_D6,8,B8_N1,,,,,
+LEDG[0],Output,PIN_C2,1,B1_N0,,,,,
+LEDG[1],Output,PIN_C1,1,B1_N0,,,,,
+LEDG[2],Output,PIN_E1,1,B1_N0,,,,,
+LEDG[3],Output,PIN_F2,1,B1_N0,,,,,
+LEDG[4],Output,PIN_H1,1,B1_N1,,,,,
+LEDG[5],Output,PIN_J3,1,B1_N1,,,,,
+LEDG[6],Output,PIN_J2,1,B1_N1,,,,,
+LEDG[7],Output,PIN_J1,1,B1_N1,,,,,
+altera_reserved_tck,Input,,,,,,,,
+altera_reserved_tdi,Input,,,,,,,,
+altera_reserved_tdo,Output,,,,,,,,
+altera_reserved_tms,Input,,,,,,,,
+clk50,Input,PIN_G21,6,B6_N1,,,,,
+clkSDRAM,Output,PIN_C4,8,B8_N1,,,,,

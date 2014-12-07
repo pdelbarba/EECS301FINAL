@@ -6,9 +6,12 @@
    version="1.0"
    description=""
    tags=""
-   categories="" />
+   categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
+   element $${FILENAME}
+   {
+   }
    element jtag_uart.avalon_jtag_slave
    {
       datum baseAddress
@@ -65,6 +68,14 @@
          type = "int";
       }
    }
+   element new_sdram_controller_0
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
    element onchip_mem
    {
       datum _sortIndex
@@ -81,6 +92,14 @@
          type = "String";
       }
    }
+   element led_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "69664";
+         type = "String";
+      }
+   }
    element onchip_mem.s1
    {
       datum baseAddress
@@ -89,11 +108,11 @@
          type = "String";
       }
    }
-   element led_pio.s1
+   element new_sdram_controller_0.s1
    {
       datum baseAddress
       {
-         value = "69664";
+         value = "8388608";
          type = "String";
       }
    }
@@ -125,7 +144,7 @@
  <parameter name="globalResetBus" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="maxAdditionalLatency" value="1" />
- <parameter name="projectName" value="" />
+ <parameter name="projectName" value="eecs301final.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="timeStamp" value="0" />
@@ -138,6 +157,9 @@
    internal="led_pio.external_connection"
    type="conduit"
    dir="end" />
+ <interface
+   name="new_sdram_controller_0_wire"
+   internal="new_sdram_controller_0.wire" />
  <module kind="clock_source" version="13.1" enabled="1" name="clk_0">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -354,6 +376,35 @@
   <parameter name="width" value="8" />
   <parameter name="clockRate" value="50000000" />
  </module>
+ <module
+   kind="altera_avalon_new_sdram_controller"
+   version="13.1"
+   enabled="0"
+   name="new_sdram_controller_0">
+  <parameter name="TAC" value="5.5" />
+  <parameter name="TRCD" value="20.0" />
+  <parameter name="TRFC" value="70.0" />
+  <parameter name="TRP" value="20.0" />
+  <parameter name="TWR" value="14.0" />
+  <parameter name="casLatency" value="3" />
+  <parameter name="columnWidth" value="8" />
+  <parameter name="dataWidth" value="16" />
+  <parameter name="generateSimulationModel" value="false" />
+  <parameter name="initRefreshCommands" value="2" />
+  <parameter name="model">single_Micron_MT48LC4M32B2_7_chip</parameter>
+  <parameter name="numberOfBanks" value="4" />
+  <parameter name="numberOfChipSelects" value="1" />
+  <parameter name="pinsSharedViaTriState" value="false" />
+  <parameter name="powerUpDelay" value="100.0" />
+  <parameter name="refreshPeriod" value="15.625" />
+  <parameter name="rowWidth" value="12" />
+  <parameter name="masteredTristateBridgeSlave" value="0" />
+  <parameter name="TMRD" value="3" />
+  <parameter name="initNOPDelay" value="0.0" />
+  <parameter name="registerDataIn" value="true" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="componentName">my_nios2_system_new_sdram_controller_0</parameter>
+ </module>
  <connection
    kind="avalon"
    version="13.1"
@@ -460,6 +511,34 @@
    end="sys_clk_timer.irq">
   <parameter name="irqNumber" value="1" />
  </connection>
+ <connection
+   kind="avalon"
+   version="13.1"
+   start="cpu.data_master"
+   end="new_sdram_controller_0.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00800000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="13.1"
+   start="cpu.instruction_master"
+   end="new_sdram_controller_0.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00800000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="reset"
+   version="13.1"
+   start="clk_0.clk_reset"
+   end="new_sdram_controller_0.reset" />
+ <connection
+   kind="clock"
+   version="13.1"
+   start="clk_0.clk"
+   end="new_sdram_controller_0.clk" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="1" />
  <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="false" />

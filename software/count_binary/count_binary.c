@@ -1,67 +1,3 @@
-/*************************************************************************
- * Copyright (c) 2009 Altera Corporation, San Jose, California, USA.      *
- * All rights reserved. All use of this software and documentation is     *
- * subject to the License Agreement located at the end of this file below.*
- *************************************************************************/
-/******************************************************************************
- *
- * Description
- * ************* 
- * A simple program which, using an 8 bit variable, counts from 0 to ff, 
- * repeatedly.  Output of this variable is displayed on the LEDs, the Seven
- * Segment Display, and the LCD.  The four "buttons" (SW0-SW3) are used
- * to control output to these devices in the following manner:
- *   Button1 (SW0) => LED is "counting"
- *   Button2 (SW1) => Seven Segment is "counting"
- *   Button3 (SW2) => LCD is "counting"
- *   Button4 (SW3) => All of the peripherals are "counting".
- *
- * Upon completion of "counting", there is a short waiting period during 
- * which button/switch presses will be identified on STDOUT.
- * NOTE:  These buttons have not been de-bounced, so one button press may 
- *        cause multiple notifications to STDOUT.
- * 
- * Requirements
- * **************
- * This program requires the following devices to be configured:
- *   an LED PIO named 'led_pio',
- *   a Seven Segment Display PIO named 'seven_seg_pio',
- *   an LCD Display named 'lcd_display',
- *   a Button PIO named 'button_pio',
- *   a UART (JTAG or standard serial)
- *
- * Peripherals Exercised by SW
- * *****************************
- * LEDs
- * Seven Segment Display
- * LCD
- * Buttons (SW0-SW3)
- * UART (JTAG or serial)
-
- * Software Files
- * ****************
- * count_binary.c ==>  This file.
- *                     main() is contained here, as is the lion's share of the
- *                     functionality.
- * count_binary.h ==>  Contains some very simple VT100 ESC sequence defines
- *                     for formatting text to the LCD Display.
- * 
- *
- * Useful Functions
- * *****************
- * count_binary.c (this file) has the following useful functions.
- *   static void sevenseg_set_hex( int hex )
- *     - Defines a hexadecimal display map for the seven segment display.
- *   static void handle_button_interrupts( void* context, alt_u32 id)
- *   static void init_button_pio()
- *     - These are useful functions because they demonstrate how to write
- *       and register an interrupt handler with the system library.
- *
- * count_binary.h 
- *   The file defines some useful VT100 escape sequences for use on the LCD
- *   Display.
- */
-
 #include "count_binary.h"
 
 /* A "loop counter" variable. */
@@ -142,10 +78,6 @@ static void init_button_pio()
 }
 #endif /* BUTTON_PIO_BASE */
 
-/* Seven Segment Display PIO Functions 
- * sevenseg_set_hex() --  implements a hex digit map.
- */
- 
 #ifdef SEVEN_SEG_PIO_BASE
 static void sevenseg_set_hex(int hex)
 {
@@ -159,13 +91,6 @@ static void sevenseg_set_hex(int hex)
 }
 #endif
 
-/* Functions used in main loop
- * lcd_init() -- Writes a simple message to the top line of the LCD.
- * initial_message() -- Writes a message to stdout (usually JTAG_UART).
- * count_<device>() -- Implements the counting on the respective device.
- * handle_button_press() -- Determines what to do when one of the buttons
- * is pressed.
- */
 static void lcd_init( FILE *lcd )
 {
     /* If the LCD Display exists, write a simple message on the first line. */
@@ -181,21 +106,6 @@ static void initial_message()
     printf("**************************\n");
 }
 
-/********************************************************
- * The following functions write the value of the global*
- * variable 'count' to 3 peripherals, if they exist in  *
- * the system.  Specifically:                           *
- * The LEDs will illuminate, the Seven Segment Display  *
- * will count from 00-ff, and the LCD will display the  *
- * hex value as the program loops.                      *
- * *****************************************************/
-
-/* static void count_led()
- * 
- * Illuminate LEDs with the value of 'count', if they
- * exist in the system
- */
-
 static void count_led()
 {
 #ifdef LED_PIO_BASE
@@ -206,27 +116,12 @@ static void count_led()
 #endif
 }
 
-/* static void count_sevenseg()
- * 
- * Display value of 'count' on the Seven Segment Display
- */
-
 static void count_sevenseg()
 {
 #ifdef SEVEN_SEG_PIO_BASE
     sevenseg_set_hex(count);
 #endif
 }
-
-/* static void count_lcd()
- * 
- * Display the value of 'count' on the LCD Display, if it
- * exists in the system.
- * 
- * NOTE:  A HAL character device driver is used, so the LCD
- * is treated as an I/O device (i.e.: using fprintf).  You
- * can read more about HAL drivers <link/reference here>.
- */
 
 static void count_lcd( void* arg )
 {
@@ -298,40 +193,11 @@ static void handle_button_press(alt_u8 type, FILE *lcd)
             break;
         default:
             printf( "Button press UNKNOWN!!\n");
+            break;
         }
     }
 }
     
-/*******************************************************************************
- * int main()                                                                  *
- *                                                                             *
- * Implements a continuous loop counting from 00 to FF.  'count' is the loop   *
- * counter.                                                                    *
- * The value of 'count' will be displayed on one or more of the following 3    *
- * devices, based upon hardware availability:  LEDs, Seven Segment Display,    *
- * and the LCD Display.                                                        *
- *                                                                             *
- * During the counting loop, a switch press of SW0-SW3 will affect the         *
- * behavior of the counting in the following way:                              *
- *                                                                             *
- * SW0 - Only the LED will be "counting".                                      *
- * SW1 - Only the Seven Segment Display will be "counting".                    *
- * SW2 - Only the LCD Display will be "counting".                              *
- * SW3 - All devices "counting".                                               *
- *                                                                             *
- * There is also a 7 second "wait", following the count loop,                 *
- * during which button presses are still                                       *
- * detected.                                                                   *
- *                                                                             *
- * The result of the button press is displayed on STDOUT.                      *
- *                                                                             *
- * NOTE:  These buttons are not de-bounced, so you may get multiple            *
- * messages for what you thought was a single button press!                    *
- *                                                                             *
- * NOTE:  References to Buttons 1-4 correspond to SW0-SW3 on the Development   *
- * Board.                                                                      *
- ******************************************************************************/
-
 int main(void)
 { 
     int i;
@@ -409,33 +275,3 @@ int main(void)
     LCD_CLOSE(lcd);
     return 0;
 }
-/******************************************************************************
- *                                                                             *
- * License Agreement                                                           *
- *                                                                             *
- * Copyright (c) 2006 Altera Corporation, San Jose, California, USA.           *
- * All rights reserved.                                                        *
- *                                                                             *
- * Permission is hereby granted, free of charge, to any person obtaining a     *
- * copy of this software and associated documentation files (the "Software"),  *
- * to deal in the Software without restriction, including without limitation   *
- * the rights to use, copy, modify, merge, publish, distribute, sublicense,    *
- * and/or sell copies of the Software, and to permit persons to whom the       *
- * Software is furnished to do so, subject to the following conditions:        *
- *                                                                             *
- * The above copyright notice and this permission notice shall be included in  *
- * all copies or substantial portions of the Software.                         *
- *                                                                             *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  *
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,    *
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE *
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER      *
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING     *
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER         *
- * DEALINGS IN THE SOFTWARE.                                                   *
- *                                                                             *
- * This agreement shall be governed in all respects by the laws of the State   *
- * of California and by the laws of the United States of America.              *
- * Altera does not recommend, suggest or require that this reference design    *
- * file be used in conjunction or combination with any other product.          *
- ******************************************************************************/
