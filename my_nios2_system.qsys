@@ -6,9 +6,12 @@
    version="1.0"
    description=""
    tags=""
-   categories="" />
+   categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
+   element $${FILENAME}
+   {
+   }
    element jtag_uart.avalon_jtag_slave
    {
       datum baseAddress
@@ -73,11 +76,11 @@
          type = "int";
       }
    }
-   element sys_clk_timer.s1
+   element led_pio.s1
    {
       datum baseAddress
       {
-         value = "69632";
+         value = "69664";
          type = "String";
       }
    }
@@ -89,11 +92,11 @@
          type = "String";
       }
    }
-   element led_pio.s1
+   element sys_clk_timer.s1
    {
       datum baseAddress
       {
-         value = "69664";
+         value = "69632";
          type = "String";
       }
    }
@@ -125,7 +128,7 @@
  <parameter name="globalResetBus" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="maxAdditionalLatency" value="1" />
- <parameter name="projectName" value="" />
+ <parameter name="projectName" value="eecs301final.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="timeStamp" value="0" />
@@ -139,7 +142,7 @@
    type="conduit"
    dir="end" />
  <module kind="clock_source" version="13.1" enabled="1" name="clk_0">
-  <parameter name="clockFrequency" value="50000000" />
+  <parameter name="clockFrequency" value="99000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
@@ -283,7 +286,7 @@
   <parameter name="tightlyCoupledInstructionMaster3AddrWidth" value="1" />
   <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='onchip_mem.s1' start='0x8000' end='0xD000' /><slave name='cpu.jtag_debug_module' start='0x10800' end='0x11000' /></address-map>]]></parameter>
   <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_mem.s1' start='0x8000' end='0xD000' /><slave name='cpu.jtag_debug_module' start='0x10800' end='0x11000' /><slave name='sys_clk_timer.s1' start='0x11000' end='0x11020' /><slave name='led_pio.s1' start='0x11020' end='0x11030' /><slave name='sysid.control_slave' start='0x11030' end='0x11038' /><slave name='jtag_uart.avalon_jtag_slave' start='0x11038' end='0x11040' /></address-map>]]></parameter>
-  <parameter name="clockFrequency" value="50000000" />
+  <parameter name="clockFrequency" value="99000000" />
   <parameter name="deviceFamilyName" value="Cyclone III" />
   <parameter name="internalIrqMaskSystemInfo" value="65538" />
   <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
@@ -328,7 +331,7 @@
   <parameter name="resetOutput" value="false" />
   <parameter name="snapshot" value="true" />
   <parameter name="timeoutPulseOutput" value="false" />
-  <parameter name="systemFrequency" value="50000000" />
+  <parameter name="systemFrequency" value="99000000" />
  </module>
  <module
    kind="altera_avalon_sysid_qsys"
@@ -337,22 +340,22 @@
    name="sysid">
   <parameter name="id" value="0" />
   <parameter name="timestamp" value="0" />
-  <parameter name="AUTO_CLK_CLOCK_RATE" value="50000000" />
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="99000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone III" />
  </module>
  <module kind="altera_avalon_pio" version="13.1" enabled="1" name="led_pio">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="false" />
-  <parameter name="direction" value="Output" />
+  <parameter name="direction" value="InOut" />
   <parameter name="edgeType" value="RISING" />
   <parameter name="generateIRQ" value="false" />
   <parameter name="irqType" value="LEVEL" />
   <parameter name="resetValue" value="0" />
   <parameter name="simDoTestBenchWiring" value="false" />
   <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="8" />
-  <parameter name="clockRate" value="50000000" />
+  <parameter name="width" value="16" />
+  <parameter name="clockRate" value="99000000" />
  </module>
  <connection
    kind="avalon"

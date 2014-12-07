@@ -14,7 +14,7 @@
    <frequency preferredWidth="114" />
   </columns>
  </clocktable>
- <window width="960" height="1037" x="0" y="43" />
+ <window width="960" height="1037" x="960" y="43" />
  <library
    expandedCategories="Library/Peripherals/Microcontroller Peripherals,Project,Library/Peripherals,Library" />
  <generation path="niosii_system" />
