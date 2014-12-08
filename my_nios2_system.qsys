@@ -16,7 +16,7 @@
    {
       datum baseAddress
       {
-         value = "69688";
+         value = "16912440";
          type = "String";
       }
    }
@@ -32,7 +32,7 @@
    {
       datum baseAddress
       {
-         value = "69680";
+         value = "16912432";
          type = "String";
       }
    }
@@ -48,7 +48,7 @@
    {
       datum baseAddress
       {
-         value = "67584";
+         value = "16910336";
          type = "String";
       }
    }
@@ -68,6 +68,14 @@
          type = "int";
       }
    }
+   element new_sdram_controller_0
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
    element onchip_mem
    {
       datum _sortIndex
@@ -76,11 +84,11 @@
          type = "int";
       }
    }
-   element led_pio.s1
+   element new_sdram_controller_0.s1
    {
       datum baseAddress
       {
-         value = "69664";
+         value = "8388608";
          type = "String";
       }
    }
@@ -88,7 +96,7 @@
    {
       datum baseAddress
       {
-         value = "32768";
+         value = "16842752";
          type = "String";
       }
    }
@@ -96,7 +104,15 @@
    {
       datum baseAddress
       {
-         value = "69632";
+         value = "16912384";
+         type = "String";
+      }
+   }
+   element led_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "16912416";
          type = "String";
       }
    }
@@ -139,6 +155,11 @@
  <interface
    name="led_pio_external_connection"
    internal="led_pio.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="new_sdram_controller_0_wire"
+   internal="new_sdram_controller_0.wire"
    type="conduit"
    dir="end" />
  <module kind="clock_source" version="13.1" enabled="1" name="clk_0">
@@ -231,9 +252,9 @@
   <parameter name="cpuID_stored" value="0" />
   <parameter name="breakOffset" value="32" />
   <parameter name="userDefinedSettings" value="" />
-  <parameter name="resetSlave" value="onchip_mem.s1" />
+  <parameter name="resetSlave">new_sdram_controller_0.s1</parameter>
   <parameter name="mmu_TLBMissExcSlave" value="None" />
-  <parameter name="exceptionSlave" value="onchip_mem.s1" />
+  <parameter name="exceptionSlave">new_sdram_controller_0.s1</parameter>
   <parameter name="breakSlave">cpu.jtag_debug_module</parameter>
   <parameter name="setting_perfCounterWidth" value="32" />
   <parameter name="setting_interruptControllerType" value="Internal" />
@@ -274,8 +295,8 @@
   <parameter name="ocimem_ramBlockType" value="Automatic" />
   <parameter name="mmu_ramBlockType" value="Automatic" />
   <parameter name="bht_ramBlockType" value="Automatic" />
-  <parameter name="instAddrWidth" value="17" />
-  <parameter name="dataAddrWidth" value="17" />
+  <parameter name="instAddrWidth" value="25" />
+  <parameter name="dataAddrWidth" value="25" />
   <parameter name="tightlyCoupledDataMaster0AddrWidth" value="1" />
   <parameter name="tightlyCoupledDataMaster1AddrWidth" value="1" />
   <parameter name="tightlyCoupledDataMaster2AddrWidth" value="1" />
@@ -284,8 +305,8 @@
   <parameter name="tightlyCoupledInstructionMaster1AddrWidth" value="1" />
   <parameter name="tightlyCoupledInstructionMaster2AddrWidth" value="1" />
   <parameter name="tightlyCoupledInstructionMaster3AddrWidth" value="1" />
-  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='onchip_mem.s1' start='0x8000' end='0xD000' /><slave name='cpu.jtag_debug_module' start='0x10800' end='0x11000' /></address-map>]]></parameter>
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_mem.s1' start='0x8000' end='0xD000' /><slave name='cpu.jtag_debug_module' start='0x10800' end='0x11000' /><slave name='sys_clk_timer.s1' start='0x11000' end='0x11020' /><slave name='led_pio.s1' start='0x11020' end='0x11030' /><slave name='sysid.control_slave' start='0x11030' end='0x11038' /><slave name='jtag_uart.avalon_jtag_slave' start='0x11038' end='0x11040' /></address-map>]]></parameter>
+  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='new_sdram_controller_0.s1' start='0x800000' end='0x1000000' /><slave name='onchip_mem.s1' start='0x1010000' end='0x1015000' /><slave name='cpu.jtag_debug_module' start='0x1020800' end='0x1021000' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='new_sdram_controller_0.s1' start='0x800000' end='0x1000000' /><slave name='onchip_mem.s1' start='0x1010000' end='0x1015000' /><slave name='cpu.jtag_debug_module' start='0x1020800' end='0x1021000' /><slave name='sys_clk_timer.s1' start='0x1021000' end='0x1021020' /><slave name='led_pio.s1' start='0x1021020' end='0x1021030' /><slave name='sysid.control_slave' start='0x1021030' end='0x1021038' /><slave name='jtag_uart.avalon_jtag_slave' start='0x1021038' end='0x1021040' /></address-map>]]></parameter>
   <parameter name="clockFrequency" value="99000000" />
   <parameter name="deviceFamilyName" value="Cyclone III" />
   <parameter name="internalIrqMaskSystemInfo" value="65538" />
@@ -357,13 +378,42 @@
   <parameter name="width" value="16" />
   <parameter name="clockRate" value="99000000" />
  </module>
+ <module
+   kind="altera_avalon_new_sdram_controller"
+   version="13.1"
+   enabled="1"
+   name="new_sdram_controller_0">
+  <parameter name="TAC" value="5.5" />
+  <parameter name="TRCD" value="20.0" />
+  <parameter name="TRFC" value="70.0" />
+  <parameter name="TRP" value="20.0" />
+  <parameter name="TWR" value="14.0" />
+  <parameter name="casLatency" value="3" />
+  <parameter name="columnWidth" value="8" />
+  <parameter name="dataWidth" value="16" />
+  <parameter name="generateSimulationModel" value="false" />
+  <parameter name="initRefreshCommands" value="2" />
+  <parameter name="model">single_Micron_MT48LC4M32B2_7_chip</parameter>
+  <parameter name="numberOfBanks" value="4" />
+  <parameter name="numberOfChipSelects" value="1" />
+  <parameter name="pinsSharedViaTriState" value="false" />
+  <parameter name="powerUpDelay" value="100.0" />
+  <parameter name="refreshPeriod" value="15.625" />
+  <parameter name="rowWidth" value="12" />
+  <parameter name="masteredTristateBridgeSlave" value="0" />
+  <parameter name="TMRD" value="3" />
+  <parameter name="initNOPDelay" value="0.0" />
+  <parameter name="registerDataIn" value="true" />
+  <parameter name="clockRate" value="99000000" />
+  <parameter name="componentName">$${FILENAME}_new_sdram_controller_0</parameter>
+ </module>
  <connection
    kind="avalon"
    version="13.1"
    start="cpu.instruction_master"
    end="cpu.jtag_debug_module">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00010800" />
+  <parameter name="baseAddress" value="0x01020800" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -372,7 +422,7 @@
    start="cpu.data_master"
    end="cpu.jtag_debug_module">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00010800" />
+  <parameter name="baseAddress" value="0x01020800" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="13.1" start="clk_0.clk" end="cpu.clk" />
@@ -389,7 +439,7 @@
    start="cpu.data_master"
    end="onchip_mem.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x8000" />
+  <parameter name="baseAddress" value="0x01010000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -398,7 +448,7 @@
    start="cpu.instruction_master"
    end="onchip_mem.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x8000" />
+  <parameter name="baseAddress" value="0x01010000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="13.1" start="clk_0.clk" end="jtag_uart.clk" />
@@ -413,7 +463,7 @@
    start="cpu.data_master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00011038" />
+  <parameter name="baseAddress" value="0x01021038" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="13.1" start="clk_0.clk" end="sys_clk_timer.clk" />
@@ -428,7 +478,7 @@
    start="cpu.data_master"
    end="sys_clk_timer.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00011000" />
+  <parameter name="baseAddress" value="0x01021000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="13.1" start="clk_0.clk" end="sysid.clk" />
@@ -439,7 +489,7 @@
    start="cpu.data_master"
    end="sysid.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00011030" />
+  <parameter name="baseAddress" value="0x01021030" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="13.1" start="clk_0.clk" end="led_pio.clk" />
@@ -450,7 +500,7 @@
    end="led_pio.reset" />
  <connection kind="avalon" version="13.1" start="cpu.data_master" end="led_pio.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00011020" />
+  <parameter name="baseAddress" value="0x01021020" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="interrupt" version="13.1" start="cpu.d_irq" end="jtag_uart.irq">
@@ -462,6 +512,34 @@
    start="cpu.d_irq"
    end="sys_clk_timer.irq">
   <parameter name="irqNumber" value="1" />
+ </connection>
+ <connection
+   kind="clock"
+   version="13.1"
+   start="clk_0.clk"
+   end="new_sdram_controller_0.clk" />
+ <connection
+   kind="reset"
+   version="13.1"
+   start="clk_0.clk_reset"
+   end="new_sdram_controller_0.reset" />
+ <connection
+   kind="avalon"
+   version="13.1"
+   start="cpu.instruction_master"
+   end="new_sdram_controller_0.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00800000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="13.1"
+   start="cpu.data_master"
+   end="new_sdram_controller_0.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00800000" />
+  <parameter name="defaultConnection" value="false" />
  </connection>
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="1" />

@@ -1,7 +1,7 @@
 #include "count_binary.h"
 #include <math.h>
 
-#define BUFF_SIZE 1
+#define BUFF_SIZE 100
 
 /* A "loop counter" variable. */
 static alt_u16 in;
@@ -18,28 +18,25 @@ static void load_buffer()
 	}
 }
 
-void swap(float *a, float *b)
-{
-   float tmp;
-   tmp = *b;
-   *b = *a;
-   *a = tmp;
-}
-
-//FFT implementation from http://www.drdobbs.com/cpp/a-simple-and-efficient-fft-implementatio/199500857
 void fft(float* data, unsigned long nn)
 {
-/*    unsigned short n, mmax, m, j, istep, i;
+    unsigned short n, mmax, m, j, istep, i;
     float wtemp, wr, wpr, wpi, wi, theta;
-    float tempr, tempi;
+    float tempr, tempi, swp;
 
     // reverse-binary reindexing
     n = nn<<1;
     j=1;
     for (i=1; i<n; i+=2) {
         if (j>i) {
-            swap(&data[j-1], &data[i-1]);
-            swap(&data[j], &data[i]);
+
+            swp = data[j-1];
+            data[j-1] = data[i-1];
+            data[i-1] = swp;
+
+            swp = data[j];
+            data[j] = data[i];
+            data[i] = swp;
         }
         m = nn;
         while (m>=2 && j>m) {
@@ -50,7 +47,7 @@ void fft(float* data, unsigned long nn)
     };
 
     // here begins the Danielson-Lanczos section
-/*    mmax=2;
+    mmax=2;
     while (n>mmax) {
         istep = mmax<<1;
         theta = -(2*M_PI/mmax);
@@ -75,7 +72,7 @@ void fft(float* data, unsigned long nn)
             wi += wi*wpr + wtemp*wpi;
         }
         mmax=istep;
-    }*/
+    }
 }
 
 int main(void)
@@ -85,15 +82,12 @@ int main(void)
     while( 1 ) 
     {
         usleep(10000);
-        printf("loading buffer with values....");
+        printf("loading buffer with values....\n");
         load_buffer();
-        //fft(buffer, BUFF_SIZE);
-        for (i = 0; i < BUFF_SIZE; i++)
-        {
-        	printf("value: %f\n", buffer[i]);
-        }
-
-
+        printf("loaded buffer\n");
+        fft(buffer, BUFF_SIZE);
+        printf("running fft\n");
+        printf("value: %d\n", (int)buffer[0]);
     }
     return 0;
 }

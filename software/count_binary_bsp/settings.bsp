@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Dec 7, 2014 1:29:18 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1417976958770</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Dec 7, 2014 6:46:06 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1417995966303</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>/home/patrick/Dropbox/Classes/Digital_Logic-EECS301/EECS301FINAL/software/count_binary_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../my_nios2_system.sopcinfo</SopcDesignFile>
@@ -146,7 +146,7 @@
                 <SettingName>hal.linker.exception_stack_memory_region_name</SettingName>
                 <Identifier>NONE</Identifier>
                 <Type>UnquotedString</Type>
-                <Value>onchip_mem</Value>
+                <Value>new_sdram_controller_0</Value>
                 <DefaultValue>none</DefaultValue>
                 <DestinationFile>none</DestinationFile>
                 <Description>Name of the existing memory region that will be divided up to create the 'exception_stack' memory region. The selected region name will be adjusted automatically when the BSP is generated to create the 'exception_stack' memory region.</Description>
@@ -182,7 +182,7 @@
                 <SettingName>hal.linker.interrupt_stack_memory_region_name</SettingName>
                 <Identifier>NONE</Identifier>
                 <Type>UnquotedString</Type>
-                <Value>onchip_mem</Value>
+                <Value>new_sdram_controller_0</Value>
                 <DefaultValue>none</DefaultValue>
                 <DestinationFile>none</DestinationFile>
                 <Description>Name of the existing memory region that will be divided up to create the 'interrupt_stack' memory region. The selected region name will be adjusted automatically when the BSP is generated to create the 'interrupt_stack' memory region.</Description>
@@ -863,57 +863,63 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <MemoryMap>
+                <slaveDescriptor>new_sdram_controller_0</slaveDescriptor>
+                <addressRange>0x00800000 - 0x00FFFFFF</addressRange>
+                <addressSpan>8388608</addressSpan>
+                <attributes>memory</attributes>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>onchip_mem</slaveDescriptor>
-                <addressRange>0x00008000 - 0x0000CFFF</addressRange>
+                <addressRange>0x01010000 - 0x01014FFF</addressRange>
                 <addressSpan>20480</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sys_clk_timer</slaveDescriptor>
-                <addressRange>0x00011000 - 0x0001101F</addressRange>
+                <addressRange>0x01021000 - 0x0102101F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>led_pio</slaveDescriptor>
-                <addressRange>0x00011020 - 0x0001102F</addressRange>
+                <addressRange>0x01021020 - 0x0102102F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sysid</slaveDescriptor>
-                <addressRange>0x00011030 - 0x00011037</addressRange>
+                <addressRange>0x01021030 - 0x01021037</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart</slaveDescriptor>
-                <addressRange>0x00011038 - 0x0001103F</addressRange>
+                <addressRange>0x01021038 - 0x0102103F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
         <LinkerSection>
                 <sectionName>.text</sectionName>
-                <regionName>onchip_mem</regionName>
+                <regionName>new_sdram_controller_0</regionName>
         </LinkerSection>
         <LinkerSection>
                 <sectionName>.rodata</sectionName>
-                <regionName>onchip_mem</regionName>
+                <regionName>new_sdram_controller_0</regionName>
         </LinkerSection>
         <LinkerSection>
                 <sectionName>.rwdata</sectionName>
-                <regionName>onchip_mem</regionName>
+                <regionName>new_sdram_controller_0</regionName>
         </LinkerSection>
         <LinkerSection>
                 <sectionName>.bss</sectionName>
-                <regionName>onchip_mem</regionName>
+                <regionName>new_sdram_controller_0</regionName>
         </LinkerSection>
         <LinkerSection>
                 <sectionName>.heap</sectionName>
-                <regionName>onchip_mem</regionName>
+                <regionName>new_sdram_controller_0</regionName>
         </LinkerSection>
         <LinkerSection>
                 <sectionName>.stack</sectionName>
-                <regionName>onchip_mem</regionName>
+                <regionName>new_sdram_controller_0</regionName>
         </LinkerSection>
 </sch:Settings>

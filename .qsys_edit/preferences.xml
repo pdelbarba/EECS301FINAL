@@ -16,6 +16,6 @@
  </clocktable>
  <window width="960" height="1037" x="960" y="43" />
  <library
-   expandedCategories="Library/Peripherals/Microcontroller Peripherals,Project,Library/Peripherals,Library" />
+   expandedCategories="Library/Memories and Memory Controllers,Library/Memories and Memory Controllers/External Memory Interfaces/LPDDR2 Interfaces,Library,Project,Library/Memories and Memory Controllers/External Memory Interfaces/SDRAM Interfaces,Library/Memories and Memory Controllers/External Memory Interfaces/Memory Models,Library/Memories and Memory Controllers/External Memory Interfaces/DDR2 Interfaces,Library/Memories and Memory Controllers/External Memory Interfaces,Library/Memories and Memory Controllers/External Memory Interfaces/DDR Interfaces,Library/Memories and Memory Controllers/External Memory Interfaces/DDR3 Interfaces" />
  <generation path="niosii_system" />
 </preferences>

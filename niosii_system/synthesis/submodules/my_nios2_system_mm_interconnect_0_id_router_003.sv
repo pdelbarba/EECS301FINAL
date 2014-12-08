@@ -42,12 +42,12 @@
 
 `timescale 1 ns / 1 ns
 
-module my_nios2_system_mm_interconnect_0_id_router_default_decode
+module my_nios2_system_mm_interconnect_0_id_router_003_default_decode
   #(
      parameter DEFAULT_CHANNEL = 0,
                DEFAULT_WR_CHANNEL = -1,
                DEFAULT_RD_CHANNEL = -1,
-               DEFAULT_DESTID = 1 
+               DEFAULT_DESTID = 0 
    )
   (output [87 - 85 : 0] default_destination_id,
    output [7-1 : 0] default_wr_channel,
@@ -83,7 +83,7 @@ module my_nios2_system_mm_interconnect_0_id_router_default_decode
 endmodule
 
 
-module my_nios2_system_mm_interconnect_0_id_router
+module my_nios2_system_mm_interconnect_0_id_router_003
 (
     // -------------------
     // Clock & Reset
@@ -165,14 +165,9 @@ module my_nios2_system_mm_interconnect_0_id_router
 
 
 
-    // -------------------------------------------------------
-    // Write and read transaction signals
-    // -------------------------------------------------------
-    wire read_transaction;
-    assign read_transaction  = sink_data[PKT_TRANS_READ];
 
 
-    my_nios2_system_mm_interconnect_0_id_router_default_decode the_default_decode(
+    my_nios2_system_mm_interconnect_0_id_router_003_default_decode the_default_decode(
       .default_destination_id (),
       .default_wr_channel   (),
       .default_rd_channel   (),
@@ -191,12 +186,8 @@ module my_nios2_system_mm_interconnect_0_id_router
 
 
 
-        if (destid == 1  && read_transaction) begin
-            src_channel = 7'b01;
-        end
-
         if (destid == 0 ) begin
-            src_channel = 7'b10;
+            src_channel = 7'b1;
         end
 
 
